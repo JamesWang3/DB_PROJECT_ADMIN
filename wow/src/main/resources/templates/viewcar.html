@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>WoW | Select Cars</title>
+
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Construction Html5 Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="author" content="Themefisher">
+    <meta name="generator" content="Themefisher Constra HTML Template v1.0">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.png}"/>
+
+    <!-- Themefisher Icon font -->
+    <link rel="stylesheet" th:href="@{/plugins/themefisher-font/style.css}">
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" th:href="@{/plugins/bootstrap/css/bootstrap.min.css}">
+
+    <!-- Animate css -->
+    <link rel="stylesheet" th:href="@{/plugins/animate/animate.css}">
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" th:href="@{/plugins/slick/slick.css}">
+    <link rel="stylesheet" th:href="@{/plugins/slick/slick-theme.css}">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body id="body">
+
+<!-- Start Top Header Bar -->
+<section class="top-header" th:insert="header :: top-header"></section><!-- End Top Header Bar -->
+
+<section class="menu" th:insert="header :: menu"></section>
+
+<section class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+                    <h1 class="page-name">Select your car</h1>
+                    <ol class="breadcrumb">
+                        <li><a th:href="@{/index}">Home</a></li>
+                        <li class="active">shop</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="products section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="widget">
+                    <div class="widget widget-category">
+                        <h4 class="widget-title">Offices</h4>
+                        <ul class="widget-category-list">
+                            <li th:each="office : ${offices}">
+                                <a th:href="@{/view-car(classid=${classId}, officeid=${office.officeID})}"><span
+                                        th:text="${office.street}
+                                    + ' ' + ${office.state}"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+
+                    <div class="col-md-4" th:each="vehicleEntity : ${vehiclePage.getRecords()}">
+                        <div class="product-item">
+                            <div class="product-thumb">
+                                <img class="img-responsive" th:src="${vehicleEntity.imgUrl}" alt="product-img"/>
+                                <div class="preview-meta">
+                                    <ul>
+                                        <li>
+									<span data-toggle="modal" data-target="#myModal"
+                                          th:attrappend="data-target=${vehicleEntity.vin}">
+										<i class="tf-ion-ios-search-strong"></i>
+									</span>
+                                        </li>
+<!--                                        <li>-->
+<!--                                            <a href="#!"><i class="tf-ion-ios-heart"></i></a>-->
+<!--                                        </li>-->
+<!--                                        <li>-->
+<!--                                            <a th:href="@{/checkout(vin=${vehicleEntity.vin})}"><i class="tf-ion-android-cart"></i></a>-->
+<!--                                        </li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h4 th:text="${vehicleEntity.model}"></h4>
+                                <h5 th:text="${vehicleEntity.make}"></h5>
+                                <p th:text="${vehicleEntity.carYear}">2022</p>
+                            </div>
+                        </div>
+                        <div class="modal product-modal fade" id="myModal" th:attrappend="id=${vehicleEntity.vin}">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="tf-ion-close"></i>
+                            </button>
+                            <div class="modal-dialog " role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                                <div class="modal-image">
+                                                    <img class="img-responsive" th:src="${vehicleEntity.imgUrl}"
+                                                         alt="product-img"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="product-short-details">
+                                                    <h2 class="product-title" th:text="${vehicleEntity.model}">Car
+                                                        model</h2>
+                                                    <h4><a href="product-single.html" th:text="${vehicleEntity.make}">Car
+                                                        make</a></h4>
+                                                    <p class="product-short-description"> todo: car description</p>
+                                                    <a th:if="${vehicleEntity.vehicleStatus == 'A'}" th:href="@{/checkout(vin=${vehicleEntity.vin})}" class="btn btn-main">Rent it!</a>
+                                                    <a th:if="${vehicleEntity.vehicleStatus != 'A'}" class="btn btn-main" th:disabled>Unavailable</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <ul class="pagination post-pagination">
+                        <li th:if="${vehiclePage.current>1}">
+                            <a th:if="${officeId != null}" th:href="@{/view-car(classid=${classId}, officeid=${officeId}, cur=${vehiclePage.current}-1)}">Prev</a>
+                            <a th:if="${officeId == null}" th:href="@{/view-car(classid=${classId}, cur=${vehiclePage.current}-1)}">Prev</a>
+                        </li>
+                        <li th:if="${vehiclePage.current==1}" class="disabled"><a>Prev</a></li>
+
+                        <!--遍历总页数，范围是第一页到最后一页-->
+                        <li th:each="num:${#numbers.sequence(1,vehiclePage.pages)}">
+                            <a th:if="${officeId != null}" th:href="@{/view-car(classid=${classId}, officeid=${officeId}, cur=${num})}">[[${num}]]</a>
+                            <a th:if="${officeId == null}" th:href="@{/view-car(classid=${classId}, cur=${num})}">[[${num}]]</a>
+                        </li>
+
+                        <li th:if="${vehiclePage.current<vehiclePage.pages}">
+                            <a th:if="${officeId != null}" th:href="@{/view-car(classid=${classId}, officeid=${officeId}, cur=${vehiclePage.current}+1)}">Next</a>
+                            <a th:if="${officeId == null}" th:href="@{/view-car(classid=${classId}, cur=${vehiclePage.current}+1)}">Next</a>
+                        </li>
+                        <li th:if="${vehiclePage.current==vehiclePage.pages}" class="disabled"><a>Next</a></li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<footer class="footer section text-center" th:insert="footer :: footer"></footer>
+
+
+<!--
+Essential Scripts
+=====================================-->
+
+<!-- Main jQuery -->
+<script th:src="@{/plugins/jquery/dist/jquery.min.js}"></script>
+<!-- Bootstrap 3.1 -->
+<script th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
+<!-- Bootstrap Touchpin -->
+<script th:src="@{/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js}"></script>
+<!-- Instagram Feed Js -->
+<script th:src="@{/plugins/instafeed/instafeed.min.js}"></script>
+<!-- Video Lightbox Plugin -->
+<script th:src="@{/plugins/ekko-lightbox/dist/ekko-lightbox.min.js}"></script>
+<!-- Count Down Js -->
+<script th:src="@{/plugins/syo-timer/build/jquery.syotimer.min.js}"></script>
+
+<!-- slick Carousel -->
+<script th:src="@{/plugins/slick/slick.min.js}"></script>
+<script th:src="@{/plugins/slick/slick-animation.min.js}"></script>
+
+<!-- Google Mapl -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+<script type="text/javascript" th:src="@{/plugins/google-map/gmap.js}"></script>
+
+<!-- Main Js File -->
+<script th:src="@{/js/script.js}"></script>
+
+
+</body>
+</html>

@@ -11,6 +11,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.hqz.wow.entity.CustomerEntity;
+import com.hqz.wow.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +39,9 @@ public class AdminDetailServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(admin_id);
         }
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + admin.getAdmin_id()));
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + admin.getAdminId()));
         System.out.println("in Detail");
-        return new User(admin.getAdmin_id(), admin.getA_password(), authorities);
+        return new User(admin.getAdminId(), admin.getPassword(), authorities);
     }
 }
 

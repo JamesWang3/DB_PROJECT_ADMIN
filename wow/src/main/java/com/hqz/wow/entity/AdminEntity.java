@@ -11,8 +11,8 @@ import static com.baomidou.mybatisplus.annotation.FieldStrategy.NOT_NULL;
 @TableName("hqz_admin")
 public class AdminEntity {
     @TableId(value = "admin_id")
-    private String admin_id;
+    private String adminId;
 
     @TableField(value = "a_password", insertStrategy = NOT_NULL)
-    private String a_password;
+    private String password;
 }

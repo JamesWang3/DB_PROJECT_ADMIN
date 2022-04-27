@@ -2,13 +2,11 @@ package com.hqz.wow.controller;
 
 import com.hqz.wow.entity.CorpInfoEntity;
 import com.hqz.wow.entity.SecurityQuestionEntity;
+import com.hqz.wow.service.AdminService;
 import com.hqz.wow.service.CorpInfoService;
 import com.hqz.wow.service.CustomerService;
 import com.hqz.wow.service.SecurityQuestionService;
-import com.hqz.wow.vo.CorpCustomerVO;
-import com.hqz.wow.vo.IndivCustomerVO;
-import com.hqz.wow.vo.InfoConfirmVO;
-import com.hqz.wow.vo.ResetPasswordVO;
+import com.hqz.wow.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,11 +32,9 @@ import java.util.List;
 @Slf4j
 public class AccountController {
 
-    @Resource
-    CustomerService customerService;
 
     @Resource
-    CorpInfoService corpInfoService;
+    AdminService adminService;
 
     @Resource
     SecurityQuestionService securityQuestionService;
@@ -49,122 +45,64 @@ public class AccountController {
      * @param model Model for the page
      * @return register-corp.html
      */
-    @GetMapping("/register-corp")
-    public String registerCorp(Model model) {
-        // When user start register (GET), prepare VO to receive user input
-        CorpCustomerVO corpCustomerVO = new CorpCustomerVO();
-
-        // Prepare corporation options
-        List<CorpInfoEntity> corpInfoEntityList = corpInfoService.getCorpInfoEntityList();
-
-        // Prepare security question options
-        List<SecurityQuestionEntity> questionList = securityQuestionService.getSecQuestions();
-
-        model.addAttribute("corpInfoEntity", corpInfoEntityList);
-        model.addAttribute("corpCustomerVO", corpCustomerVO);
-        model.addAttribute("questionList", questionList);
-        return "register-corp";
-    }
 
     /**
-     * Individual customer registration - GET
+     * Admin registration - GET
      *
      * @param model Model for the page
-     * @return register-indiv.html
+     * @return admin.html
      */
-    @GetMapping("/register-indiv")
-    public String registerIndiv(Model model) {
+    @GetMapping("/register-admin")
+    public String registerAdmin(Model model) {
         // When user start register (GET), prepare VO to receive user input
-        IndivCustomerVO indivCustomerVO = new IndivCustomerVO();
+        AdminVO adminVO = new AdminVO();
 
-        // Prepare security question options
-        List<SecurityQuestionEntity> questionList = securityQuestionService.getSecQuestions();
-
-        model.addAttribute("indivCustomerVO", indivCustomerVO);
-        model.addAttribute("questionList", questionList);
-        return "register-indiv";
+        model.addAttribute("adminVO", adminVO);
+        return "register-admin";
     }
 
     /**
-     * Process corporation customer registration
+     * Process admin registration
      *
-     * @param corpCustomerVO Corp customer information
-     * @param bindingResult  User input validation
-     * @param model          Model for the page
-     * @return Input invalid, return register-corp.html, registration success return login.html
-     */
-    @PostMapping("/register-corp")
-    public String registerSaveCorp(@Valid @ModelAttribute("corpCustomerVO") CorpCustomerVO corpCustomerVO, BindingResult bindingResult, Model model) {
-        //todo employeeId unique check
-
-        // check if e-mail already registered
-        if (customerService.checkIfCustomerExist(corpCustomerVO.getEmail())) {
-            model.addAttribute("emailExists", true);
-            return "register-corp";
-        }
-
-        if (bindingResult.hasErrors()) {
-            // input invalid, display error messages
-            return "register-corp";
-        }
-
-        try {
-            // encrypt password
-            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-            String password = bCryptPasswordEncoder.encode(corpCustomerVO.getPassword());
-            corpCustomerVO.setPassword(password);
-            // database registration process
-            customerService.registerCorpCustomer(corpCustomerVO);
-            // successful registration, go to login page
-            return "/login";
-        } catch (Exception e) {
-            // registration failure, back to registration page
-            model.addAttribute("error", true);
-            return "register-corp";
-        }
-    }
-
-    /**
-     * Process individual customer registration
-     *
-     * @param indivCustomerVO Individual customer information
+     * @param adminVO admin information
      * @param bindingResult   User input validation
      * @param model           Model for the page
      * @return Input invalid return registration page, successful return login page
      */
-    @PostMapping("/register-indiv")
-    public String registerSaveIndiv(@Valid @ModelAttribute("indivCustomerVO") IndivCustomerVO indivCustomerVO, BindingResult bindingResult, Model model) {
+    @PostMapping("/register-admin")
+    public String registerSaveAdmin(@Valid @ModelAttribute("adminVO") AdminVO adminVO, BindingResult bindingResult, Model model) {
 
-        // check if e-mail already registered
-        if (customerService.checkIfCustomerExist(indivCustomerVO.getEmail())) {
-            model.addAttribute("emailExists", true);
-            return "register-indiv";
+        // check if id already registered
+        if (adminService.checkIfAdminExist(adminVO.getAdmin_id())) {
+            model.addAttribute("adminExists", true);
+            System.out.println("already exist!");
+            return "register-admin";
         }
 
         if (bindingResult.hasErrors()) {
             // input invalid, display error messages
-            return "register-indiv";
+            return "register-admin";
         }
         try {
             BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-            String password = bCryptPasswordEncoder.encode(indivCustomerVO.getPassword());
-            indivCustomerVO.setPassword(password);
-            customerService.registerIndivCustomer(indivCustomerVO);
-            return "/login";
+            String password = bCryptPasswordEncoder.encode(adminVO.getA_password());
+            adminVO.setA_password(password);
+            adminService.registerAdmin(adminVO);
+            return "/login-admin";
         } catch (Exception e) {
             model.addAttribute("error", true);
-            return "register-indiv";
+            return "register-admin";
         }
     }
 
     /**
      * login page with Spring Security
      *
-     * @return login.html
+     * @return login-admin.html
      */
-    @RequestMapping("/login")
+    @RequestMapping("/login-admin")
     public String login() {
-        return "login";
+        return "login-admin";
     }
 
     /**
@@ -215,35 +153,35 @@ public class AccountController {
      * @param model              model for the page
      * @return info invalid redirect to confirm-info.html, successful return reset-password.html
      */
-    @PostMapping("/reset-password")
-    public String resetPassword(@Valid @ModelAttribute("infoConfirmVO") InfoConfirmVO infoConfirmVO, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
-        if (bindingResult.hasErrors()) {
-            // redirect error messages
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.infoConfirmVO", bindingResult);
-            redirectAttributes.addFlashAttribute("infoConfirmVO", infoConfirmVO);
-            return "redirect:/confirm-info";
-        }
-
-        String email = infoConfirmVO.getEmail();
-        // check if e-mail exists
-        if (!customerService.checkIfCustomerExist(email)) {
-            redirectAttributes.addFlashAttribute("emailNotExists", true);
-            return "redirect:/confirm-info";
-        }
-
-        // validate customer security question
-        if (!customerService.validateSecQuestion(email, infoConfirmVO.getQuestionId(), infoConfirmVO.getSecAnswer())) {
-            redirectAttributes.addFlashAttribute("wronganswer", true);
-            return "redirect:/confirm-info";
-        }
-
-        // prepare VO for reset password
-        ResetPasswordVO resetPasswordVO = new ResetPasswordVO();
-        model.addAttribute("resetPasswordVO", resetPasswordVO);
-        model.addAttribute("email", email);
-
-        return "reset-password";
-    }
+//    @PostMapping("/reset-password")
+//    public String resetPassword(@Valid @ModelAttribute("infoConfirmVO") InfoConfirmVO infoConfirmVO, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+//        if (bindingResult.hasErrors()) {
+//            // redirect error messages
+//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.infoConfirmVO", bindingResult);
+//            redirectAttributes.addFlashAttribute("infoConfirmVO", infoConfirmVO);
+//            return "redirect:/confirm-info";
+//        }
+//
+//        String email = infoConfirmVO.getEmail();
+//        // check if e-mail exists
+//        if (!customerService.checkIfCustomerExist(email)) {
+//            redirectAttributes.addFlashAttribute("emailNotExists", true);
+//            return "redirect:/confirm-info";
+//        }
+//
+//        // validate customer security question
+//        if (!customerService.validateSecQuestion(email, infoConfirmVO.getQuestionId(), infoConfirmVO.getSecAnswer())) {
+//            redirectAttributes.addFlashAttribute("wronganswer", true);
+//            return "redirect:/confirm-info";
+//        }
+//
+//        // prepare VO for reset password
+//        ResetPasswordVO resetPasswordVO = new ResetPasswordVO();
+//        model.addAttribute("resetPasswordVO", resetPasswordVO);
+//        model.addAttribute("email", email);
+//
+//        return "reset-password";
+//    }
 
     /**
      * porcess user reset password (validate password and update database)
@@ -253,23 +191,23 @@ public class AccountController {
      * @param model           model for the page
      * @return password invalid return reset-password.html, successful return login.html
      */
-    @PostMapping("/reset-password-process")
-    public String processResetPassword(@ModelAttribute("resetPasswordVO") ResetPasswordVO resetPasswordVO, HttpServletRequest request, Model model) {
-        if (!resetPasswordVO.getPassword().equals(resetPasswordVO.getConfirmPassword())) {
-            model.addAttribute("passwordMismatch", true);
-            model.addAttribute("email", request.getParameter("email"));
-            return "reset-password";
-        }
-        try {
-            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-            String password = bCryptPasswordEncoder.encode(resetPasswordVO.getPassword());
-            resetPasswordVO.setPassword(password);
-            String email = request.getParameter("email");
-            customerService.resetPassword(email, resetPasswordVO);
-            return "/login";
-        } catch (Exception e) {
-            model.addAttribute("error", true);
-            return "reset-password";
-        }
-    }
+//    @PostMapping("/reset-password-process")
+//    public String processResetPassword(@ModelAttribute("resetPasswordVO") ResetPasswordVO resetPasswordVO, HttpServletRequest request, Model model) {
+//        if (!resetPasswordVO.getPassword().equals(resetPasswordVO.getConfirmPassword())) {
+//            model.addAttribute("passwordMismatch", true);
+//            model.addAttribute("email", request.getParameter("email"));
+//            return "reset-password";
+//        }
+//        try {
+//            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//            String password = bCryptPasswordEncoder.encode(resetPasswordVO.getPassword());
+//            resetPasswordVO.setPassword(password);
+//            String email = request.getParameter("email");
+//            customerService.resetPassword(email, resetPasswordVO);
+//            return "/login";
+//        } catch (Exception e) {
+//            model.addAttribute("error", true);
+//            return "reset-password";
+//        }
+//    }
 }

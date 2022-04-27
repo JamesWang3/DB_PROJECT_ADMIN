@@ -2,6 +2,8 @@ package com.hqz.wow.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,8 +24,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     UserDetailsService userDetailsService;
 
+//    public DaoAuthenticationProvider authProvider() {
+//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+//        authProvider.setUserDetailsService(userDetailsService);
+//        authProvider.setPasswordEncoder(passwordEncoder());
+//        return authProvider;
+//    }
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.authenticationProvider(authProvider());
+//    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
+
         return new BCryptPasswordEncoder();
     }
 
@@ -36,8 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        System.out.println("in config");
         http.authorizeRequests()
-                .antMatchers("/login", "/register-corp","/register-indiv", "/reset-password", "/confirm-info", "/reset-password-process").permitAll()
+                .antMatchers("/login-admin", "/register-admin", "/reset-password", "/confirm-info", "/reset-password-process").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // Remember me configurations
@@ -49,14 +63,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //Login configurations
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/index", true)
-                .failureUrl("/login?error=true")
+                .loginPage("/login-admin")
+                .defaultSuccessUrl("/dashboard", true)
+                .failureUrl("/login-admin?error=true")
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/login-admin")
                 .invalidateHttpSession(true)
                 .deleteCookies("wow-cookie");
+        System.out.println(this.userDetailsService + "in config");
     }
 }

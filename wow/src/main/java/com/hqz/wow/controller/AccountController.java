@@ -95,14 +95,6 @@ public class AccountController {
         }
     }
 
-
-    @GetMapping("/dashboard")
-    public String goDashboard(){
-        return "dashboard";
-    }
-
-
-
     /**
      * login page with Spring Security
      *

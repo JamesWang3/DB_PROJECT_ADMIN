@@ -1,9 +1,12 @@
 package com.hqz.wow.service;
 
+import com.hqz.wow.entity.ClassEntity;
 import com.hqz.wow.entity.CustomerEntity;
 import com.hqz.wow.vo.CorpCustomerVO;
 import com.hqz.wow.vo.IndivCustomerVO;
 import com.hqz.wow.vo.ResetPasswordVO;
+
+import java.util.List;
 
 public interface CustomerService {
 
@@ -18,4 +21,6 @@ public interface CustomerService {
     void resetPassword(String email, ResetPasswordVO resetPasswordVO) throws RuntimeException;
 
     boolean validateSecQuestion(String email, int questionId, String answer);
+
+    List<CustomerEntity> getCustomerEntityList();
 }

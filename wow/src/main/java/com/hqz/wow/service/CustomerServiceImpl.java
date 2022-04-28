@@ -1,6 +1,7 @@
 package com.hqz.wow.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.hqz.wow.entity.ClassEntity;
 import com.hqz.wow.entity.CorpCustomerEntity;
 import com.hqz.wow.entity.CustomerEntity;
 import com.hqz.wow.entity.IndivCustomerEntity;
@@ -18,6 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -109,5 +112,11 @@ public class CustomerServiceImpl implements CustomerService {
     public boolean validateSecQuestion(String email, int questionId, String answer) {
         CustomerEntity customer = findCustomerByEmail(email);
         return customer.getQuestionId() == questionId && answer.equals(customer.getSecAnswer());
+    }
+
+
+    @Override
+    public List<CustomerEntity> getCustomerEntityList() {
+        return customerMapper.selectList(null);
     }
 }

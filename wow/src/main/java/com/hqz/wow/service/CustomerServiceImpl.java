@@ -1,6 +1,7 @@
 package com.hqz.wow.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hqz.wow.entity.ClassEntity;
 import com.hqz.wow.entity.CorpCustomerEntity;
 import com.hqz.wow.entity.CustomerEntity;
@@ -114,9 +115,30 @@ public class CustomerServiceImpl implements CustomerService {
         return customer.getQuestionId() == questionId && answer.equals(customer.getSecAnswer());
     }
 
-
     @Override
     public List<CustomerEntity> getCustomerEntityList() {
         return customerMapper.selectList(null);
+    }
+
+    @Override
+    public void deleteCustomer(CustomerEntity customerEntity) {
+//        QueryWrapper<CustomerEntity> wrapper = new QueryWrapper<>();
+//        wrapper.eq("c_email", email);
+        customerMapper.deleteById(customerEntity);
+    }
+
+    @Override
+    public void deleteCustomerByEmail(String email) {
+        QueryWrapper<CustomerEntity> wrapper = new QueryWrapper<>();
+        wrapper.eq("c_email", email);
+        customerMapper.delete(wrapper);
+    }
+
+    @Override
+    public Page<CustomerEntity> findCustomerByKeyword(String email, String key) {
+//
+//        customerMapper.selec
+
+        return null;
     }
 }

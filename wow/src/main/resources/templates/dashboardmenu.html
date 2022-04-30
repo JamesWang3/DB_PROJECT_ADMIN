@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+<!--    <meta charset="utf-8">-->
+<!--    <title>Welcome to WoW</title>-->
+
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="description" content="Construction Html5 Template">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">-->
+<!--    <meta name="author" content="Themefisher">-->
+<!--    <meta name="generator" content="Themefisher Constra HTML Template v1.0">-->
+
+    <!-- Favicon -->
+    <link rel="stylesheet", href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!--    <link rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css">-->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png"/>
+
+<!--    &lt;!&ndash; Themefisher Icon font &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="plugins/themefisher-font/style.css">-->
+<!--    &lt;!&ndash; bootstrap.min css &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">-->
+    <!-- Animate css -->
+    <link rel="stylesheet", href="css/sidebarmenu.css">
+    <link rel="stylesheet" href="plugins/animate/animate.css">
+<!--    &lt;!&ndash; Slick Carousel &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="plugins/slick/slick.css">-->
+<!--    <link rel="stylesheet" href="plugins/slick/slick-theme.css">-->
+
+<!--     Main Stylesheet-->
+<!--    <link rel="stylesheet" href="css/style.css">-->
+
+</head>
+
+<body id="body">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">World On Wheels</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/dashboardmenu"><span class="glyphicon glyphicon-home">&nbsp;</span>Hello Admin</a></li>
+                <li class="active"><a title="View Website" href="#"><span class="glyphicon glyphicon-globe"></span></a></li>
+                <li><a href="/login-admin">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="col-md-3">
+
+        <div id="sidebar">
+            <div class="container-fluid tmargin">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..." />
+                    <span class="input-group-btn">
+              <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+                </div>
+            </div>
+
+            <ul class="nav navbar-nav side-bar">
+                <li class="side-bar tmargin"><a th:href="@{dashboard-customer}"><span class="glyphicon glyphicon-dashboard">&nbsp;</span>Dashboard</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-user">&nbsp;</span>Customer</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-flag">&nbsp;</span>Purok</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-file">&nbsp;</span>Purok</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-map-marker">&nbsp;</span>Purok</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-calendar">&nbsp;</span>Purok</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-wrench">&nbsp;</span>Purok</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-tasks">&nbsp;</span>Purok</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-usd">&nbsp;</span>Purok</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-credit-card">&nbsp;</span>Purok</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-list">&nbsp;</span>Service</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-signal">&nbsp;</span>Statistics</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-cog">&nbsp;</span>Settings</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-9 animated bounce">
+        <h1 class="page-header">Dashboard</h1>
+        <ul class="breadcrumb">
+            <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
+            <li><a href="#">Dashboard</a></li>
+        </ul>
+        <table class="table table-hover">
+            <thead>
+            <th>&nbsp;</th>
+            <th class="text-center">#</th>
+            <th>Title</th>
+            <th class="text-center">Author</th>
+            <th>Status</th>
+
+            </thead>
+            <tbody>
+            <!--
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td class="text-center">1</td>
+                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                <td class="text-center" width="10%">Admin</td>
+                <td><span class="label label-info">Pending</span></td>
+              </tr>
+    -->
+            <!-- START CONTENT END -->
+            <tr>
+                <td>
+                    <input type="checkbox" />
+                </td>
+                <td class="text-center">1</td>
+                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                <td class="text-center" width="10%">Admin</td>
+                <td><span class="label label-info"><span class="glyphicon glyphicon-time">&nbsp;</span>Pending</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" />
+                </td>
+                <td class="text-center">1</td>
+                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                <td class="text-center" width="10%">Admin</td>
+                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" />
+                </td>
+                <td class="text-center">1</td>
+                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                <td class="text-center" width="10%">Admin</td>
+                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" />
+                </td>
+                <td class="text-center">1</td>
+                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                <td class="text-center" width="10%">Admin</td>
+                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" />
+                </td>
+                <td class="text-center">1</td>
+                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                <td class="text-center" width="10%">Admin</td>
+                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" />
+                </td>
+                <td class="text-center">1</td>
+                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                <td class="text-center" width="10%">Admin</td>
+                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" />
+                </td>
+                <td class="text-center">1</td>
+                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                <td class="text-center" width="10%">Admin</td>
+                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" />
+                </td>
+                <td class="text-center">1</td>
+                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                <td class="text-center" width="10%">Admin</td>
+                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" />
+                </td>
+                <td class="text-center">1</td>
+                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                <td class="text-center" width="10%">Admin</td>
+                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" />
+                </td>
+                <td class="text-center">1</td>
+                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                <td class="text-center" width="10%">Admin</td>
+                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
+                </td>
+            </tr>
+
+            <!-- DUMP CONTENT END -->
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+</div>
+
+<!--
+Essential Scripts
+=====================================-->
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+<!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+<!--<script src="//https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<!--<script src="js/SideBarMenu.js"></script>-->
+
+<!-- Main jQuery -->
+<script src="plugins/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.1 -->
+<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- Bootstrap Touchpin -->
+<script src="plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+<!-- Instagram Feed Js -->
+<script src="plugins/instafeed/instafeed.min.js"></script>
+<!-- Video Lightbox Plugin -->
+<script src="plugins/ekko-lightbox/dist/ekko-lightbox.min.js"></script>
+<!-- Count Down Js -->
+<script src="plugins/syo-timer/build/jquery.syotimer.min.js"></script>
+
+<!-- slick Carousel -->
+<script src="plugins/slick/slick.min.js"></script>
+<script src="plugins/slick/slick-animation.min.js"></script>
+
+<!-- Google Mapl -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+<script type="text/javascript" src="plugins/google-map/gmap.js"></script>
+
+<!-- Main Js File -->
+<script src="js/script.js"></script>
+
+</body>
+</html>

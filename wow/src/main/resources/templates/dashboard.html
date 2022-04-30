@@ -1,19 +1,9 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <body></body>-->
-<!--    <title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns="http://www.w3.org/1999/html">
 <head>
+    <!--    Table Stylesheet-->
+    <link rel="stylesheet" href = "css/table.css">
 
     <!-- Basic Page Needs
     ================================================== -->
@@ -45,56 +35,106 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
+
 </head>
 
 <body id="body">
 
 <!-- Start Top Header Bar -->
 <section class="top-header" th:insert="header :: top-header"></section><!-- End Top Header Bar -->
-
-
 <!-- Main Menu Section -->
 <section class="menu" th:insert="header :: menu"></section>
-
 <!--<section class="products section bg-gray">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="title text-center">-->
-<!--                <h2>what you want to do?</h2>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--            <div class="col-md-4" th:each="customerEntity : ${customerEntityList}">-->
-<!--                <div class="product-item">-->
-<!--&lt;!&ndash;                    <div class="product-thumb">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <img class="img-responsive" th:src="${classEntity.imgUrl}" alt="product-img"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--                    <div class="product-content">-->
-<!--&lt;!&ndash;                        <h4><a th:href="@{/view-car(customerid=${customerEntity.customerId})}"&ndash;&gt;-->
-<!--                               th:text="${customerEntity.customerId}">Unknown</a></h4>-->
-<!--                        <p class="price" th:text="'Rental rate: ' + ${customerEntity.getCustomerType()}">$200</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
+<!--    <h2>Users</h2>-->
+<!--    <table class="table table-bordered table-striped">-->
+<!--        <thread>-->
+<!--            <tr>-->
+<!--                <th>Email</th>-->
+<!--                <th>Zip_code</th>-->
+<!--            </tr>-->
+<!--        </thread>-->
+<!--        <tbody>-->
+<!--        <tr th:each = "customerEntity: ${customerEntityList}">-->
+<!--            <td th:text="${customerEntity.getEmail()}" />-->
+<!--            <td th:text="${customerEntity.getZipcode()}"/>-->
+<!--            <td>-->
+<!--                <a th:href="@{/showUpdateForm(email=${customerEntity.getEmail()})}" class="btn btn-info">Update</a>-->
 
-<h2>Users</h2>
-<table class="table table-bordered table-striped">
-    <thread>
-        <tr>
-            <th>Email</th>
-            <th>Zip_code</th>
-        </tr>
-    </thread>
-    <tbody>
+<!--                <a th:href="@{/deleteCustomer(email=${customerEntity.getEmail()})}" class="btn btn-danger ml-2">Delete</a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--&lt;!&ndash;    <table class="container">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="title text-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h2>what you want to do?</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <table class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;            <h2>Users</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;            <table class="table table-bordered table-striped">&ndash;&gt;-->
+<!--&lt;!&ndash;                <thread>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>Email</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>Zip_code</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                </thread>&ndash;&gt;-->
+<!--&lt;!&ndash;                <tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="col-md-4" th:each="customerEntity : ${customerEntityList}">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="product-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <td th:text="${customerEntity.getEmail()}" />&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="product-content">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <td th:text="${customerEntity.getZipcode()}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a th:href="@{/showUpdateForm(email=${customerEntity.getEmail()})}" class="btn btn-info">Update</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                <a th:href="@{/deleteCustomer(email=${customerEntity.getEmail()})}" class="btn btn-danger ml-2">Delete</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;            </table>&ndash;&gt;-->
+<!--&lt;!&ndash;        </table>&ndash;&gt;-->
+<!--&lt;!&ndash;    </table>&ndash;&gt;-->
+<!--</section>-->
+<div class="container">
+    <h3>Customers</h3>
+    <hr/>
+    <div class="text-center">
+        <a th:href="@{/addIndivCustomerForm}" class = "btn btn-main btn-small btn-round-full">Add IndivCustomer</a>
+    </div>
+    <div class="text-center">
+        <a th:href="@{/addCorpCustomerForm}" class = "btn btn-main btn-small btn-round-full">Add CorpCustomer</a>
+    </div>
+    <br/><br/>
+    <div class = "table-wrapper">
+        <table class="fl-table">
+    <!--<table class="table table-bordered table-striped">-->
+        <thread>
+            <tr>
+                <th>Email</th>
+                <th>Zip_code</th>
+            </tr>
+        </thread>
+        <tbody>
         <tr th:each = "customerEntity: ${customerEntityList}">
             <td th:text="${customerEntity.getEmail()}" />
             <td th:text="${customerEntity.getZipcode()}"/>
+            <td>
+                <a th:href="@{/showUpdateForm(email=${customerEntity.getEmail()})}" class="btn btn-info">Update</a>
+
+                <a th:href="@{/deleteCustomer(email=${customerEntity.getEmail()})}" class="btn btn-danger ml-2">Delete</a>
+            </td>
         </tr>
-    </tbody>
-</table>
+        </tbody>
+        </table>
+    </div>
+</div>
+
+
+
 
 <footer class="footer section text-center" th:insert="footer :: footer"></footer>
 

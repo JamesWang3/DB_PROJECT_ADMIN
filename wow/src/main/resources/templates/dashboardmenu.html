@@ -93,164 +93,80 @@
             <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
             <li><a href="#">Dashboard</a></li>
         </ul>
-
-        <form class="text-left clearfix">
-            <div class = "form-group">
-                <label>Total Customer</label>
-                <td th:text="${dashboardVO.customerCount}" />
-            </div>
-            <div class = "form-group">
-                <label>Total Individual Customer</label>
-                <td th:text="${dashboardVO.indivCustomerCount}" />
-            </div>
-            <div class = "form-group">
-                <label>Total Individual Customer Count</label>
-                <td th:text="${dashboardVO.corpCustomerCount}" />
-            </div>
-            <div class = "form-group">
-                <label>Individual Customer Count</label>
-                <td th:text="${dashboardVO.classCount}" />
-            </div>
-            <div class = "form-group">
-                <label>Individual Customer Count</label>
-                <td th:text="${dashboardVO.officeCount}" />
-            </div>
-            <div class = "form-group">
-                <label>Individual Customer Count</label>
-                <td th:text="${dashboardVO.serviceCount}" />
-            </div>
-        </form>
-<!--        <table class="table table-hover">-->
-<!--            <thead>-->
-<!--            <th>&nbsp;</th>-->
-<!--            <th class="text-center">#</th>-->
-<!--            <th>Title</th>-->
-<!--            <th class="text-center">Author</th>-->
-<!--            <th>Status</th>-->
-
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            &lt;!&ndash;-->
-<!--              <tr>-->
-<!--                <td><input type="checkbox" /></td>-->
-<!--                <td class="text-center">1</td>-->
-<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
-<!--                <td class="text-center" width="10%">Admin</td>-->
-<!--                <td><span class="label label-info">Pending</span></td>-->
-<!--              </tr>-->
-<!--    &ndash;&gt;-->
-<!--            &lt;!&ndash; START CONTENT END &ndash;&gt;-->
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" />-->
-<!--                </td>-->
-<!--                <td class="text-center">1</td>-->
-<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
-<!--                <td class="text-center" width="10%">Admin</td>-->
-<!--                <td><span class="label label-info"><span class="glyphicon glyphicon-time">&nbsp;</span>Pending</span>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" />-->
-<!--                </td>-->
-<!--                <td class="text-center">1</td>-->
-<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
-<!--                <td class="text-center" width="10%">Admin</td>-->
-<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" />-->
-<!--                </td>-->
-<!--                <td class="text-center">1</td>-->
-<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
-<!--                <td class="text-center" width="10%">Admin</td>-->
-<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" />-->
-<!--                </td>-->
-<!--                <td class="text-center">1</td>-->
-<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
-<!--                <td class="text-center" width="10%">Admin</td>-->
-<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" />-->
-<!--                </td>-->
-<!--                <td class="text-center">1</td>-->
-<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
-<!--                <td class="text-center" width="10%">Admin</td>-->
-<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" />-->
-<!--                </td>-->
-<!--                <td class="text-center">1</td>-->
-<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
-<!--                <td class="text-center" width="10%">Admin</td>-->
-<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" />-->
-<!--                </td>-->
-<!--                <td class="text-center">1</td>-->
-<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
-<!--                <td class="text-center" width="10%">Admin</td>-->
-<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" />-->
-<!--                </td>-->
-<!--                <td class="text-center">1</td>-->
-<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
-<!--                <td class="text-center" width="10%">Admin</td>-->
-<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" />-->
-<!--                </td>-->
-<!--                <td class="text-center">1</td>-->
-<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
-<!--                <td class="text-center" width="10%">Admin</td>-->
-<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <input type="checkbox" />-->
-<!--                </td>-->
-<!--                <td class="text-center">1</td>-->
-<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
-<!--                <td class="text-center" width="10%">Admin</td>-->
-<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
-<!--                </td>-->
-<!--            </tr>-->
-
-<!--            &lt;!&ndash; DUMP CONTENT END &ndash;&gt;-->
-
-<!--            </tbody>-->
-
-<!--        </table>-->
+        <div class = "table-wrapper">
+            <table class="table table-hover">
+                <tr>
+                    <td><canvas id="CustomerChart" style="width:100%;max-width:600px"></canvas></td>
+                    <td><canvas id="ServiceChart" style="width:100%;max-width:600px"></canvas></td>
+                </tr>
+            </table>
+        </div>
     </div>
-    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<!--        <form class="text-left clearfix">-->
+<!--            <div class = "form-group">-->
+<!--                <label>Total Customer</label>-->
+<!--                <td th:text="${dashboardVO.customerCount}" />-->
+<!--            </div>-->
+<!--            <div class = "form-group">-->
+<!--                <label>Total Individual Customer</label>-->
+<!--                <td th:text="${dashboardVO.indivCustomerCount}" />-->
+<!--            </div>-->
+<!--            <div class = "form-group">-->
+<!--                <label>Total Individual Customer Count</label>-->
+<!--                <td th:text="${dashboardVO.corpCustomerCount}" />-->
+<!--            </div>-->
+<!--            <div class = "form-group">-->
+<!--                <label>Individual Customer Count</label>-->
+<!--                <td th:text="${dashboardVO.classCount}" />-->
+<!--            </div>-->
+<!--            <div class = "form-group">-->
+<!--                <label>Individual Customer Count</label>-->
+<!--                <td th:text="${dashboardVO.officeCount}" />-->
+<!--            </div>-->
+<!--            <div class = "form-group">-->
+<!--                <label>Individual Customer Count</label>-->
+<!--                <td th:text="${dashboardVO.serviceCount}" />-->
+<!--            </div>-->
+<!--            <div class = "form-group">-->
+<!--                <label>Individual Customer Count</label>-->
+<!--                <td th:text="${dashboardVO.serviceStatusOCount}" />-->
+<!--            </div>-->
+<!--            <div class = "form-group">-->
+<!--                <label>Individual Customer Count</label>-->
+<!--                <td th:text="${dashboardVO.serviceStatusPCount}" />-->
+<!--            </div>-->
+<!--            <div class = "form-group">-->
+<!--                <label>Individual Customer Count</label>-->
+<!--                <td th:text="${dashboardVO.serviceStatusACount}" />-->
+<!--            </div>-->
+<!--            <div class = "form-group">-->
+<!--                <label>Individual Customer Count</label>-->
+<!--                <td th:text="${dashboardVO.serviceStatusFCount}" />-->
+<!--            </div>-->
+<!--        </form>-->
+
+    </div>
+    <input id="labelCustomerCount" type="hidden" th:value="${dashboardVO.customerCount}" />
+    <input id="labelIndivCustomerCount" type="hidden" th:value="${dashboardVO.indivCustomerCount}" />
+    <input id="labelCorpCustomerCount" type="hidden" th:value="${dashboardVO.corpCustomerCount}" />
+    <input id="labelOOO" type="hidden" th:value="${dashboardVO.serviceStatusOCount}" />
+    <input id="labelAAA" type="hidden" th:value="${dashboardVO.serviceStatusACount}" />
+    <input id="labelPPP" type="hidden" th:value="${dashboardVO.serviceStatusPCount}" />
+    <input id="labelFFF" type="hidden" th:value="${dashboardVO.serviceStatusFCount}" />
+</div>
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td><canvas id="CustomerChart" style="width:100%;max-width:600px;position: relative;left: 100px;"></canvas></td>-->
+<!--            <td><canvas id="ServiceChart" style="width:100%;max-width:600px"></canvas></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+
     <script>
-        var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-        var yValues = [55, 49, 44, 24, 15];
+        var corpCustomer = document.getElementById("labelCorpCustomerCount").value;
+        var indivCustomer = document.getElementById("labelIndivCustomerCount").value;
+        var xValues = ["indivCustomer", "corpCustomer"];
+        var yValues = [indivCustomer, corpCustomer,];
         var barColors = [
             "#b91d47",
             "#00aba9",
@@ -258,8 +174,7 @@
             "#e8c3b9",
             "#1e7145"
         ];
-
-        new Chart("myChart", {
+        new Chart("CustomerChart", {
             type: "pie",
             data: {
                 labels: xValues,
@@ -276,7 +191,40 @@
             }
         });
     </script>
-</div>
+    <script>
+        var O = document.getElementById("labelOOO").value;
+        var A = document.getElementById("labelAAA").value;
+        var P = document.getElementById("labelPPP").value;
+        var F = document.getElementById("labelFFF").value;
+        var xValues = ["OnGoing", "Pending","Need Payment","Finished"];
+        var yValues = [O, A,P,F];
+        var barColors = [
+            "#1e7145",
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+        ];
+        new Chart("ServiceChart", {
+            type: "doughnut",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "World Wide Wine Production 2018"
+                }
+            }
+        });
+    </script>
+
+
+
 
 <!--
 Essential Scripts

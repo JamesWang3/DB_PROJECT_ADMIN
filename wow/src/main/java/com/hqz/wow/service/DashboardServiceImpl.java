@@ -52,12 +52,35 @@ public class DashboardServiceImpl implements DashboardService {
         QueryWrapper<RentalServiceEntity> wrapper6 = new QueryWrapper<>();
         Long rentalServiceCount = rentalServiceMapper.selectCount(wrapper6);
 
+        QueryWrapper<RentalServiceEntity> wrapper7 = new QueryWrapper<>();
+        wrapper7.eq("service_status", 'O');
+        Long serviceStatusOCount = rentalServiceMapper.selectCount(wrapper7);
+
+        QueryWrapper<RentalServiceEntity> wrapper8 = new QueryWrapper<>();
+        wrapper8.eq("service_status", 'P');
+        Long serviceStatusPCount = rentalServiceMapper.selectCount(wrapper8);
+
+        QueryWrapper<RentalServiceEntity> wrapper9 = new QueryWrapper<>();
+        wrapper9.eq("service_status", 'A');
+        Long serviceStatusACount = rentalServiceMapper.selectCount(wrapper9);
+
+        QueryWrapper<RentalServiceEntity> wrapper10 = new QueryWrapper<>();
+        wrapper10.eq("service_status", 'F');
+        Long serviceStatusFCount = rentalServiceMapper.selectCount(wrapper10);
+
+        QueryWrapper<RentalServiceEntity> wrapper11 = new QueryWrapper<>();
+        Long paymentUSD = rentalServiceMapper.selectCount(wrapper11);
+
         dashboardVO.setCustomerCount(customerCount);
         dashboardVO.setIndivCustomerCount(indivCustomerCount);
         dashboardVO.setCorpCustomerCount(corpCustomerCount);
         dashboardVO.setClassCount(classCount);
         dashboardVO.setOfficeCount(officeCount);
         dashboardVO.setServiceCount(rentalServiceCount);
+        dashboardVO.setServiceStatusOCount(serviceStatusOCount);
+        dashboardVO.setServiceStatusPCount(serviceStatusPCount);
+        dashboardVO.setServiceStatusACount(serviceStatusACount);
+        dashboardVO.setServiceStatusFCount(serviceStatusFCount);
         return dashboardVO;
     }
 

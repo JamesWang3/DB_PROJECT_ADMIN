@@ -11,10 +11,10 @@ public class DashboardVO {
     private Long classCount;
     private Long officeCount;
     private Long serviceCount;
-//    private Long serviceStatusOCount;
-//    private Long serviceStatusPCount;
-//    private Long serviceStatusACount;
-//    private Long serviceStatusFCount;
+    private Long serviceStatusOCount;
+    private Long serviceStatusPCount;
+    private Long serviceStatusACount;
+    private Long serviceStatusFCount;
 //    private float paymentUSD;
 
 }

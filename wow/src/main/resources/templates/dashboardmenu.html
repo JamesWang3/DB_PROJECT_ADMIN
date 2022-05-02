@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns="http://www.w3.org/1999/html">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <head>
 
     <!-- Basic Page Needs
@@ -45,7 +46,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">World On Wheels</a>
+            <a class="navbar-brand" href="https://github.com/HAoRAn-W/DB_PROJECT">World On Wheels</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -64,21 +65,21 @@
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search..." />
                     <span class="input-group-btn">
-              <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-          </span>
+                        <button class="btn btn-default"><a th:href="@{https://google.com}"><span class="glyphicon glyphicon-search"></span></a></button>
+                    </span>
                 </div>
             </div>
 
             <ul class="nav navbar-nav side-bar">
-                <li class="side-bar tmargin"><a th:href="@{dashboard-customer}"><span class="glyphicon glyphicon-dashboard">&nbsp;</span>Dashboard</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-user">&nbsp;</span>Customer</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-flag">&nbsp;</span>Purok</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-file">&nbsp;</span>Purok</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-map-marker">&nbsp;</span>Purok</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-calendar">&nbsp;</span>Purok</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-wrench">&nbsp;</span>Purok</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-tasks">&nbsp;</span>Purok</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-usd">&nbsp;</span>Purok</a></li>
+                <li class="side-bar tmargin"><a th:href="@{/dashboardmenu}"><span class="glyphicon glyphicon-dashboard">&nbsp;</span>Dashboard</a></li>
+                <li class="side-bar"><a th:href="@{dashboard-customer}"><span class="glyphicon glyphicon-user">&nbsp;</span>Customer</a></li>
+                <li class="side-bar"><a th:href="@{dashboard-rentalservice-all}"><span class="glyphicon glyphicon-list">&nbsp;</span>Order</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-file">&nbsp;</span>Invoice</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-map-marker">&nbsp;</span>Office</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-calendar">&nbsp;</span>Rental service</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-wrench">&nbsp;</span>Vehicle</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-tasks">&nbsp;</span>Task</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-usd">&nbsp;</span>Payment</a></li>
                 <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-credit-card">&nbsp;</span>Purok</a></li>
                 <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-list">&nbsp;</span>Service</a></li>
                 <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-signal">&nbsp;</span>Statistics</a></li>
@@ -92,135 +93,189 @@
             <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
             <li><a href="#">Dashboard</a></li>
         </ul>
-        <table class="table table-hover">
-            <thead>
-            <th>&nbsp;</th>
-            <th class="text-center">#</th>
-            <th>Title</th>
-            <th class="text-center">Author</th>
-            <th>Status</th>
 
-            </thead>
-            <tbody>
-            <!--
-              <tr>
-                <td><input type="checkbox" /></td>
-                <td class="text-center">1</td>
-                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
-                <td class="text-center" width="10%">Admin</td>
-                <td><span class="label label-info">Pending</span></td>
-              </tr>
-    -->
-            <!-- START CONTENT END -->
-            <tr>
-                <td>
-                    <input type="checkbox" />
-                </td>
-                <td class="text-center">1</td>
-                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
-                <td class="text-center" width="10%">Admin</td>
-                <td><span class="label label-info"><span class="glyphicon glyphicon-time">&nbsp;</span>Pending</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" />
-                </td>
-                <td class="text-center">1</td>
-                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
-                <td class="text-center" width="10%">Admin</td>
-                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" />
-                </td>
-                <td class="text-center">1</td>
-                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
-                <td class="text-center" width="10%">Admin</td>
-                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" />
-                </td>
-                <td class="text-center">1</td>
-                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
-                <td class="text-center" width="10%">Admin</td>
-                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" />
-                </td>
-                <td class="text-center">1</td>
-                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
-                <td class="text-center" width="10%">Admin</td>
-                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" />
-                </td>
-                <td class="text-center">1</td>
-                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
-                <td class="text-center" width="10%">Admin</td>
-                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" />
-                </td>
-                <td class="text-center">1</td>
-                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
-                <td class="text-center" width="10%">Admin</td>
-                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" />
-                </td>
-                <td class="text-center">1</td>
-                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
-                <td class="text-center" width="10%">Admin</td>
-                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" />
-                </td>
-                <td class="text-center">1</td>
-                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
-                <td class="text-center" width="10%">Admin</td>
-                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" />
-                </td>
-                <td class="text-center">1</td>
-                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
-                <td class="text-center" width="10%">Admin</td>
-                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>
-                </td>
-            </tr>
+        <form class="text-left clearfix">
+            <div class = "form-group">
+                <label>Total Customer</label>
+                <td th:text="${dashboardVO.customerCount}" />
+            </div>
+            <div class = "form-group">
+                <label>Total Individual Customer</label>
+                <td th:text="${dashboardVO.indivCustomerCount}" />
+            </div>
+            <div class = "form-group">
+                <label>Total Individual Customer Count</label>
+                <td th:text="${dashboardVO.corpCustomerCount}" />
+            </div>
+            <div class = "form-group">
+                <label>Individual Customer Count</label>
+                <td th:text="${dashboardVO.classCount}" />
+            </div>
+            <div class = "form-group">
+                <label>Individual Customer Count</label>
+                <td th:text="${dashboardVO.officeCount}" />
+            </div>
+            <div class = "form-group">
+                <label>Individual Customer Count</label>
+                <td th:text="${dashboardVO.serviceCount}" />
+            </div>
+        </form>
+<!--        <table class="table table-hover">-->
+<!--            <thead>-->
+<!--            <th>&nbsp;</th>-->
+<!--            <th class="text-center">#</th>-->
+<!--            <th>Title</th>-->
+<!--            <th class="text-center">Author</th>-->
+<!--            <th>Status</th>-->
 
-            <!-- DUMP CONTENT END -->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            &lt;!&ndash;-->
+<!--              <tr>-->
+<!--                <td><input type="checkbox" /></td>-->
+<!--                <td class="text-center">1</td>-->
+<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
+<!--                <td class="text-center" width="10%">Admin</td>-->
+<!--                <td><span class="label label-info">Pending</span></td>-->
+<!--              </tr>-->
+<!--    &ndash;&gt;-->
+<!--            &lt;!&ndash; START CONTENT END &ndash;&gt;-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <input type="checkbox" />-->
+<!--                </td>-->
+<!--                <td class="text-center">1</td>-->
+<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
+<!--                <td class="text-center" width="10%">Admin</td>-->
+<!--                <td><span class="label label-info"><span class="glyphicon glyphicon-time">&nbsp;</span>Pending</span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <input type="checkbox" />-->
+<!--                </td>-->
+<!--                <td class="text-center">1</td>-->
+<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
+<!--                <td class="text-center" width="10%">Admin</td>-->
+<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <input type="checkbox" />-->
+<!--                </td>-->
+<!--                <td class="text-center">1</td>-->
+<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
+<!--                <td class="text-center" width="10%">Admin</td>-->
+<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <input type="checkbox" />-->
+<!--                </td>-->
+<!--                <td class="text-center">1</td>-->
+<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
+<!--                <td class="text-center" width="10%">Admin</td>-->
+<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <input type="checkbox" />-->
+<!--                </td>-->
+<!--                <td class="text-center">1</td>-->
+<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
+<!--                <td class="text-center" width="10%">Admin</td>-->
+<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <input type="checkbox" />-->
+<!--                </td>-->
+<!--                <td class="text-center">1</td>-->
+<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
+<!--                <td class="text-center" width="10%">Admin</td>-->
+<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <input type="checkbox" />-->
+<!--                </td>-->
+<!--                <td class="text-center">1</td>-->
+<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
+<!--                <td class="text-center" width="10%">Admin</td>-->
+<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <input type="checkbox" />-->
+<!--                </td>-->
+<!--                <td class="text-center">1</td>-->
+<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
+<!--                <td class="text-center" width="10%">Admin</td>-->
+<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <input type="checkbox" />-->
+<!--                </td>-->
+<!--                <td class="text-center">1</td>-->
+<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
+<!--                <td class="text-center" width="10%">Admin</td>-->
+<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <input type="checkbox" />-->
+<!--                </td>-->
+<!--                <td class="text-center">1</td>-->
+<!--                <td width="70%">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>-->
+<!--                <td class="text-center" width="10%">Admin</td>-->
+<!--                <td><span class="label label-success"><span class="glyphicon glyphicon-ok-sign">&nbsp;</span>Live</span>-->
+<!--                </td>-->
+<!--            </tr>-->
 
-            </tbody>
+<!--            &lt;!&ndash; DUMP CONTENT END &ndash;&gt;-->
 
-        </table>
+<!--            </tbody>-->
+
+<!--        </table>-->
     </div>
-</div>
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+    <script>
+        var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+        var yValues = [55, 49, 44, 24, 15];
+        var barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145"
+        ];
 
+        new Chart("myChart", {
+            type: "pie",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "World Wide Wine Production 2018"
+                }
+            }
+        });
+    </script>
 </div>
 
 <!--
@@ -231,6 +286,7 @@ Essential Scripts
 <!--<script src="//https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
 <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 <!--<script src="js/SideBarMenu.js"></script>-->
+<!--chart-->
 
 <!-- Main jQuery -->
 <script src="plugins/jquery/dist/jquery.min.js"></script>

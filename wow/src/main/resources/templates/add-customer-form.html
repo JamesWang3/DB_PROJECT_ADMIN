@@ -19,78 +19,143 @@
     <meta name="generator" content="Themefisher Constra HTML Template v1.0">
 
     <!-- Favicon -->
+    <link rel="stylesheet", href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png"/>
 
-    <!-- Themefisher Icon font -->
-    <link rel="stylesheet" href="plugins/themefisher-font/style.css">
-    <!-- bootstrap.min css -->
-    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+<!--    &lt;!&ndash; Themefisher Icon font &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="plugins/themefisher-font/style.css">-->
+<!--    &lt;!&ndash; bootstrap.min css &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">-->
 
-    <!-- Animate css -->
+<!--    &lt;!&ndash; Animate css &ndash;&gt;-->
+    <link rel="stylesheet", href="css/sidebarmenu.css">
     <link rel="stylesheet" href="plugins/animate/animate.css">
     <!-- Slick Carousel -->
-    <link rel="stylesheet" href="plugins/slick/slick.css">
-    <link rel="stylesheet" href="plugins/slick/slick-theme.css">
+<!--    <link rel="stylesheet" href="plugins/slick/slick.css">-->
+<!--    <link rel="stylesheet" href="plugins/slick/slick-theme.css">-->
 
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+<!--    &lt;!&ndash; Main Stylesheet &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="css/style.css">-->
 
 
 </head>
 
 <body id="body">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://github.com/HAoRAn-W/DB_PROJECT">World On Wheels</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/dashboardmenu"><span class="glyphicon glyphicon-home">&nbsp;</span>Hello Admin</a></li>
+                <li class="active"><a title="View Website" href="#"><span class="glyphicon glyphicon-globe"></span></a></li>
+                <li><a href="/login-admin">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="col-md-3">
 
-<!-- Start Top Header Bar -->
-<section class="top-header" th:insert="header :: top-header"></section><!-- End Top Header Bar -->
+        <div id="sidebar">
+            <div class="container-fluid tmargin">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search..." />
+                    <span class="input-group-btn">
+              <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+                </div>
+            </div>
 
+            <ul class="nav navbar-nav side-bar">
+                <li class="side-bar tmargin"><a th:href="@{/dashboardmenu}"><span class="glyphicon glyphicon-dashboard">&nbsp;</span>Dashboard</a></li>
+                <li class="side-bar"><a th:href="@{dashboard-customer}"><span class="glyphicon glyphicon-user">&nbsp;</span>Customer</a></li>
+                <li class="side-bar"><a th:href="@{dashboard-rentalservice-all}"><span class="glyphicon glyphicon-list">&nbsp;</span>Order</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-file">&nbsp;</span>Invoice</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-map-marker">&nbsp;</span>Office</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-calendar">&nbsp;</span>Rental service</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-wrench">&nbsp;</span>Vehicle</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-tasks">&nbsp;</span></a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-usd">&nbsp;</span>Payment</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-credit-card">&nbsp;</span>Purok</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-list">&nbsp;</span>Service</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-signal">&nbsp;</span>Statistics</a></li>
+                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-cog">&nbsp;</span>Settings</a></li>
+            </ul>
+        </div>
+    </div>
 
-<!-- Main Menu Section -->
-<section class="menu" th:insert="header :: menu"></section>
+    <section class="signin-page account">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="block text-center">
+                    <h3>Edit Customer</h3>
+                    <hr/>
+                    <form class="text-left clearfix" th:action="@{/saveCustomer}" th:object="${customer}" method="POST">
+                        <div class = "form-group">
+                            <label>Customer Id</label>
+                            <input type="text" th:field="*{customerId}" class="form-control col-4 mb-4" placeholder="Enter Customer Id" />
+                            <div th:if="${#fields.hasErrors('customerId')}" class="alert alert-danger alert-common"
+                                 role="alert" th:errors="*{customerId}"></div>
+                        </div>
+                        <div class = "form-group">
+                            <label>Email</label>
+                            <input type="text" th:field="*{email}" class="form-control col-4 mb-4" placeholder="Enter email" />
+                            <div th:if="${#fields.hasErrors('email')}" class="alert alert-danger alert-common"
+                                 role="alert" th:errors="*{email}"></div>
+                        </div>
+                        <div class = "form-group">
+                            <label>Street</label>
+                            <input type="text" th:field="*{street}" class="form-control col-4 mb-4" placeholder="Enter Street" />
+                            <div th:if="${#fields.hasErrors('street')}" class="alert alert-danger alert-common"
+                                 role="alert" th:errors="*{street}"></div>
+                        </div>
+                        <div class = "form-group">
+                            <label>City</label>
+                            <input type="text" th:field="*{city}" class="form-control col-4 mb-4" placeholder="Enter City" />
+                            <div th:if="${#fields.hasErrors('city')}" class="alert alert-danger alert-common"
+                                 role="alert" th:errors="*{city}"></div>
+                        </div>
+                        <div class = "form-group">
+                            <label>Zip Code</label>
+                            <input type="text" th:field="*{zipcode}" class="form-control col-4 mb-4" placeholder="Enter zipcode" />
+                            <div th:if="${#fields.hasErrors('zipcode')}" class="alert alert-danger alert-common"
+                                 role="alert" th:errors="*{zipcode}"></div>
+                        </div>
+                        <div class = "form-group">
+                            <label>Phone Number</label>
+                            <input type="text" th:field="*{phone}" class="form-control col-4 mb-4" placeholder="Enter Phone Number" />
+                            <div th:if="${#fields.hasErrors('phone')}" class="alert alert-danger alert-common"
+                                 role="alert" th:errors="*{phone}"></div>
+                        </div>
+                        <div class = "form-group">
+                            <label>Password</label>
+                            <input type="text" th:field="*{password}" class="form-control col-4 mb-4" placeholder="Enter Password" />
+                            <div th:if="${#fields.hasErrors('password')}" class="alert alert-danger alert-common"
+                                 role="alert" th:errors="*{password}"></div>
+                        </div>
+                        <div class="text-center">
+                        <button type="submit" class="btn btn-main btn-small btn-round-full">Save</button>
+    <!--                        <input type="hidden" th:field="*{customerId}" />-->
+                        </div>
 
-<section class="signin-page account">
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="block text-center">
-                <h3>Add New Customer</h3>
-                <hr/>
-                <form class="text-left clearfix" th:action="@{/saveCustomer}" th:object="${customer}" method="POST">
-                    <div class = "form-group">
-                        <label>Customer Id</label>
-                        <input type="text" th:field="*{customerId}" class="form-control col-4 mb-4" placeholder="Enter Customer Id" />
-                        <div th:if="${#fields.hasErrors('customerId')}" class="alert alert-danger alert-common"
-                             role="alert" th:errors="*{customerId}"></div>
-                    </div>
-
-                    <div class = "form-group">
-                        <label>Email</label>
-                        <input type="text" th:field="*{email}" class="form-control col-4 mb-4" placeholder="Enter email" />
-                        <div th:if="${#fields.hasErrors('email')}" class="alert alert-danger alert-common"
-                             role="alert" th:errors="*{email}"></div>
-                    </div>
-
-                    <div class = "form-group">
-                    <label>Zip Code</label>
-                        <input type="text" th:field="*{zipcode}" class="form-control col-4 mb-4" placeholder="Enter zipcode" />
-                        <div th:if="${#fields.hasErrors('zipcode')}" class="alert alert-danger alert-common"
-                             role="alert" th:errors="*{zipcode}"></div>
-                    </div>
-
-                    <div class="text-center">
-                    <button type="submit" class="btn btn-main btn-small btn-round-full">Save</button>
-<!--                        <input type="hidden" th:field="*{customerId}" />-->
-                    </div>
-
-                </form>
-                <hr/>
-                <p class="mt-20"><a th:href="@{/dashboard}">Back to list</a></p>
+                    </form>
+                    <hr/>
+                    <p class="mt-20"><a th:href="@{/dashboardmenu}">Back to Dashboard</a></p>
+                </div>
             </div>
         </div>
     </div>
+    </section>
 </div>
 
-
-<footer class="footer section text-center" th:insert="footer :: footer"></footer>
 
 
 <!--

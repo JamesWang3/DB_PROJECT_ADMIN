@@ -7,6 +7,7 @@ import com.hqz.wow.entity.OfficeEntity;
 import com.hqz.wow.entity.VehicleEntity;
 import com.hqz.wow.mapper.CustomerMapper;
 import com.hqz.wow.service.*;
+import com.hqz.wow.vo.DashboardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +36,9 @@ public class AdminDashboardController {
     @Autowired
     CustomerMapper customerMapper;
 
+    @Autowired
+    DashboardService   dashboardService;
+
 //    @Autowired
 //    private CustomerRepository cRepo;
     /**
@@ -47,15 +51,15 @@ public class AdminDashboardController {
     public String index(Model model) {
         // show customer list on home page
         // todo pagination
-        List<CustomerEntity> customerEntityList = customerService.getCustomerEntityList();
-        model.addAttribute("customerEntityList", customerEntityList);
+        DashboardVO dashboardVO = dashboardService.getDashboardService();
+        model.addAttribute("dashboardVO", dashboardVO);
         return "dashboardmenu";
     }
     @GetMapping("/dashboard-customer")
     public String showCustomer(Model model){
         List<CustomerEntity> customerEntityList = customerService.getCustomerEntityList();
         model.addAttribute("customerEntityList", customerEntityList);
-        return "dashboard";
+        return "dashboard-customer";
     }
 
     @GetMapping("/addCustomerForm")

@@ -2,10 +2,7 @@ package com.hqz.wow.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.hqz.wow.entity.ClassEntity;
-import com.hqz.wow.entity.CorpCustomerEntity;
-import com.hqz.wow.entity.CustomerEntity;
-import com.hqz.wow.entity.IndivCustomerEntity;
+import com.hqz.wow.entity.*;
 import com.hqz.wow.exception.RegistrationException;
 import com.hqz.wow.exception.ResetPasswordException;
 import com.hqz.wow.mapper.CorpCustomerMapper;
@@ -118,6 +115,23 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<CustomerEntity> getCustomerEntityList() {
         return customerMapper.selectList(null);
+    }
+
+    @Override
+    public void updateCustomer(CustomerEntity customer){
+        CustomerEntity customerEntity = findCustomerByEmail(customer.getEmail());
+        try{
+            customerEntity.setStreet(customer.getStreet());
+            customerEntity.setCity(customer.getCity());
+            customerEntity.setZipcode(customer.getZipcode());
+            customerEntity.setPhone(customer.getPhone());
+            customerEntity.setEmail(customer.getEmail());
+
+        }
+        catch (Exception E){
+            ;
+        }
+        customerMapper.updateById(customerEntity);
     }
 
     @Override

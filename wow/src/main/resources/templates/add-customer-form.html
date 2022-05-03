@@ -77,16 +77,16 @@
                 <li class="side-bar tmargin"><a th:href="@{/dashboardmenu}"><span class="glyphicon glyphicon-dashboard">&nbsp;</span>Dashboard</a></li>
                 <li class="side-bar"><a th:href="@{dashboard-customer}"><span class="glyphicon glyphicon-user">&nbsp;</span>Customer</a></li>
                 <li class="side-bar"><a th:href="@{dashboard-rentalservice-all}"><span class="glyphicon glyphicon-list">&nbsp;</span>Order</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-file">&nbsp;</span>Invoice</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-map-marker">&nbsp;</span>Office</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-calendar">&nbsp;</span>Rental service</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-wrench">&nbsp;</span>Vehicle</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-tasks">&nbsp;</span></a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-usd">&nbsp;</span>Payment</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-credit-card">&nbsp;</span>Purok</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-list">&nbsp;</span>Service</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-signal">&nbsp;</span>Statistics</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-cog">&nbsp;</span>Settings</a></li>
+<!--                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-file">&nbsp;</span>Invoice</a></li>-->
+<!--                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-map-marker">&nbsp;</span>Office</a></li>-->
+<!--                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-calendar">&nbsp;</span>Rental service</a></li>-->
+<!--                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-wrench">&nbsp;</span>Vehicle</a></li>-->
+<!--                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-tasks">&nbsp;</span></a></li>-->
+<!--                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-usd">&nbsp;</span>Payment</a></li>-->
+<!--                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-credit-card">&nbsp;</span>Purok</a></li>-->
+<!--                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-list">&nbsp;</span>Service</a></li>-->
+<!--                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-signal">&nbsp;</span>Statistics</a></li>-->
+<!--                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-cog">&nbsp;</span>Settings</a></li>-->
             </ul>
         </div>
     </div>
@@ -101,7 +101,8 @@
                     <form class="text-left clearfix" th:action="@{/saveCustomer}" th:object="${customer}" method="POST">
                         <div class = "form-group">
                             <label>Customer Id</label>
-                            <input type="text" th:field="*{customerId}" class="form-control col-4 mb-4" placeholder="Enter Customer Id" />
+                            <input type="text" th:field="*{customerId}" class="form-control col-4 mb-4" placeholder="Enter Customer Id"
+                                   disabled="disabled">
                             <div th:if="${#fields.hasErrors('customerId')}" class="alert alert-danger alert-common"
                                  role="alert" th:errors="*{customerId}"></div>
                         </div>
@@ -148,7 +149,7 @@
 
                     </form>
                     <hr/>
-                    <p class="mt-20"><a th:href="@{/dashboardmenu}">Back to Dashboard</a></p>
+                    <p class="mt-20"><a th:href="@{/dashboard-customer}">Back to All Customers</a></p>
                 </div>
             </div>
         </div>

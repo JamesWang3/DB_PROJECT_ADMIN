@@ -73,7 +73,7 @@ public class AccountController {
     public String registerSaveAdmin(@Valid @ModelAttribute("adminVO") AdminVO adminVO, BindingResult bindingResult, Model model) {
 
         // check if id already registered
-        if (adminService.checkIfAdminExist(adminVO.getAdmin_id())) {
+        if (adminService.checkIfAdminExist(adminVO.getAdminId())) {
             model.addAttribute("adminExists", true);
             System.out.println("already exist!");
             return "register-admin";
@@ -85,12 +85,13 @@ public class AccountController {
         }
         try {
             BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-            String password = bCryptPasswordEncoder.encode(adminVO.getA_password());
-            adminVO.setA_password(password);
+            String password = bCryptPasswordEncoder.encode(adminVO.getPassword());
+            adminVO.setPassword(password);
             adminService.registerAdmin(adminVO);
             return "/login-admin";
         } catch (Exception e) {
             model.addAttribute("error", true);
+            System.out.println("--=-=-------------------================");
             return "register-admin";
         }
     }

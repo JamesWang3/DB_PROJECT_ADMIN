@@ -9,24 +9,24 @@ import javax.validation.constraints.NotNull;
 @Data
 public class AdminVO {
     @NotNull(message = "Please input your admin id")
-    private String admin_id;
+    private String adminId;
 
     @NotEmpty(message = "Password cannot be empty")
-    private String a_password;
+    private String password;
 
-    public String getAdmin_id() {
-        return admin_id;
+    public String getAdminId() {
+        return adminId;
     }
 
-    public void setAdmin_id(String admin_id) {
-        this.admin_id = admin_id;
+    public void setAdminId(String adminId) {
+        this.adminId = adminId;
     }
 
-    public String getA_password() {
-        return a_password;
+    public String getPassword() {
+        return password;
     }
 
-    public void setA_password(String a_password) {
-        this.a_password = a_password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -69,17 +69,18 @@ public class AdminDashboardController {
         return "add-customer-form";
     }
 
-    @GetMapping("/addCorpCustomerForm")
-    public String addCorpCustomerForm(Model model){
-//        CustomerEntity customerEntity = new CustomerEntity();
-//        model.addAttribute("customer", customerEntity);
-        return "register-corp";
-    }
+//    @GetMapping("/addCorpCustomerForm")
+//    public String addCorpCustomerForm(Model model){
+////        CustomerEntity customerEntity = new CustomerEntity();
+////        model.addAttribute("customer", customerEntity);
+//        return "register-corp";
+//    }
 
     @PostMapping("/saveCustomer")
     public String saveCustomer(CustomerEntity customerEntity){
-        customerMapper.insert(customerEntity);
-        return "redirect:/dashboard";
+        customerService.updateCustomer(customerEntity);
+//        customerMapper.updateById(customerEntity);
+        return "redirect:/dashboardmenu";
     }
 
     @GetMapping("/showUpdateForm")
@@ -92,6 +93,6 @@ public class AdminDashboardController {
     @GetMapping("deleteCustomer")
     public String deleteCustomer(String email){
         customerService.deleteCustomerByEmail(email);
-        return "redirect:/dashboard";
+        return "redirect:/dashboardmenu";
     }
 }

@@ -50,17 +50,17 @@
                           method="post" novalidate>
                         <div class="form-group">
                             <label for="Admin id">Admin id</label>
-                            <input type="text" id="Admin id" class="form-control" th:field="*{admin_id}"
+                            <input type="text" id="Admin id" class="form-control" th:field="*{adminId}"
                                    placeholder="Admin id">
-                            <div th:if="${#fields.hasErrors('admin_id')}" class="alert alert-danger alert-common"
-                                 role="alert" th:errors="*{admin_id}"></div>
+                            <div th:if="${#fields.hasErrors('adminId')}" class="alert alert-danger alert-common"
+                                 role="alert" th:errors="*{adminId}"></div>
                         </div>
                         <div class="form-group">
                             <label for="Password">Password</label>
-                            <input type="password" id="Password" class="form-control" th:field="*{a_password}"
+                            <input type="password" id="Password" class="form-control" th:field="*{password}"
                                    placeholder="Password">
-                            <div th:if="${#fields.hasErrors('a_password')}" class="alert alert-danger alert-common"
-                                 role="alert" th:errors="*{a_password}"></div>
+                            <div th:if="${#fields.hasErrors('password')}" class="alert alert-danger alert-common"
+                                 role="alert" th:errors="*{password}"></div>
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-main btn-small btn-round-full">Register</button>

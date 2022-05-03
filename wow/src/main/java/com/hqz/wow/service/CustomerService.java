@@ -30,4 +30,6 @@ public interface CustomerService {
     void deleteCustomerByEmail(String customerId);
 
     Page<CustomerEntity> findCustomerByKeyword(String email, String key);
+
+     void updateCustomer(CustomerEntity customer);
 }

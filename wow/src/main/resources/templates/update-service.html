@@ -229,8 +229,7 @@
                         <form class="text-left clearfix" th:action="@{/saveUpdateService}" th:object="${rentalServiceEntity}" method="POST">
                             <div class = "form-group">
                                 <label>Service Id</label>
-                                <input type="text" th:field="*{serviceId}" class="form-control col-4 mb-4" placeholder="Update service Id"
-                                       disabled="disabled">
+                                <input type="text" th:field="*{serviceId}" class="form-control col-4 mb-4" placeholder="Update service Id">
                                 <div th:if="${#fields.hasErrors('serviceId')}" class="alert alert-danger alert-common"
                                      role="alert" th:errors="*{serviceId}"></div>
                             </div>

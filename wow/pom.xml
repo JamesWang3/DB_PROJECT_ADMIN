@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.hqz</groupId>
-    <artifactId>wow</artifactId>
+    <artifactId>wow-admin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>wow</name>
     <description>wow</description>

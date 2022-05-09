@@ -13,4 +13,6 @@ public interface VehicleService {
     VehicleEntity getVehicleByVin(String vin);
 
     void rentVehicle(String vin);
+
+    void updateOdometer(String vin, float odometer);
 }

@@ -64,6 +64,7 @@ public class AdminRentalServiceController {
     public String saveUpdateService(RentalServiceEntity rentalServiceEntity){
         rentalService.resetEodometer(rentalServiceEntity.getServiceId(),rentalServiceEntity.getEOdometer());
         rentalService.resetStatus(rentalServiceEntity.getServiceId(), rentalServiceEntity.getServiceStatus());
+        vehicleService.updateOdometer(rentalServiceEntity.getVin(), rentalServiceEntity.getEOdometer());
         return "redirect:/dashboard-rentalservice-all";
     }
 

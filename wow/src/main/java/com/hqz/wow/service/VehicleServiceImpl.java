@@ -46,4 +46,11 @@ public class VehicleServiceImpl implements VehicleService {
         vehicle.setVehicleStatus(WowConstants.VEHICLE_RENT);
         vehicleMapper.updateById(vehicle);
     }
+
+    @Override
+    public void updateOdometer(String vin, float odometer) {
+        VehicleEntity vehicle= vehicleMapper.selectById(vin);
+        vehicle.setOdometer(odometer);
+        vehicleMapper.updateById(vehicle);
+    }
 }

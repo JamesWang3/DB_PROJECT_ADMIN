@@ -234,6 +234,13 @@
                                 <div th:if="${#fields.hasErrors('serviceId')}" class="alert alert-danger alert-common"
                                      role="alert" th:errors="*{serviceId}"></div>
                             </div>
+                            <div class = "form-group">
+                                <label>Vehicle VIN</label>
+                                <input type="text" th:field="*{vin}" class="form-control col-4 mb-4" placeholder="VIN"
+                                       readonly>
+                                <div th:if="${#fields.hasErrors('vin')}" class="alert alert-danger alert-common"
+                                     role="alert" th:errors="*{vin}"></div>
+                            </div>
 
                             <div class = "form-group">
                                 <label>Eodometer</label>

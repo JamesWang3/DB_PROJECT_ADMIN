@@ -88,10 +88,9 @@ public class AccountController {
             String password = bCryptPasswordEncoder.encode(adminVO.getPassword());
             adminVO.setPassword(password);
             adminService.registerAdmin(adminVO);
-            return "/login-admin";
+            return "login-admin";
         } catch (Exception e) {
             model.addAttribute("error", true);
-            System.out.println("--=-=-------------------================");
             return "register-admin";
         }
     }
@@ -122,6 +121,11 @@ public class AccountController {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/login?logout";
+    }
+
+    @RequestMapping("/")
+    public String index() {
+        return "redirect:/dashboardmenu";
     }
 
     /**

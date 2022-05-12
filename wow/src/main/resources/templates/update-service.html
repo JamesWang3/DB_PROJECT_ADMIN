@@ -251,7 +251,12 @@
 
                             <div class = "form-group">
                                 <label>Status(O/A/P/F)</label>
-                                <input type="text" th:field="*{serviceStatus}" class="form-control col-4 mb-4" placeholder="Enter zipcode" />
+                                <select id="Status(O/A/P/F)" class="form-control" th:field="*{serviceStatus}">
+                                    <option value="O">Ongoing (O)</option>
+                                    <option value="A">Wait for administrator (A)</option>
+                                    <option value="P">Wait for payment (P)</option>
+                                    <option value="F">Finished (F)</option>
+                                </select>
                                 <div th:if="${#fields.hasErrors('serviceStatus')}" class="alert alert-danger alert-common"
                                      role="alert" th:errors="*{serviceStatus}"></div>
                             </div>

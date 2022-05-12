@@ -126,7 +126,6 @@ public class CustomerServiceImpl implements CustomerService {
             customerEntity.setZipcode(customer.getZipcode());
             customerEntity.setPhone(customer.getPhone());
             customerEntity.setEmail(customer.getEmail());
-
         }
         catch (Exception E){
             ;
